@@ -1,0 +1,32 @@
+name: Daily YouTube Automation
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # Runs daily at 12:00 PM UTC
+  workflow_dispatch:
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Video Pipeline (1 Long, 2 Shorts)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+        run: |
+          python script_gen.py
+          # python video_gen.py
+          # python uploader.py
