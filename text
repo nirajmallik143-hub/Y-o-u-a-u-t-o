@@ -1,0 +1,10 @@
+├── .github/
+│   └── workflows/
+│       └── auto_upload.yml
+├── assets/          # Background music, fonts, watermarks
+├── output/          # Generated videos (temporary)
+├── script_gen.py    # Generates hook-driven scripts using AI APIs
+├── tts_gen.py       # Converts scripts to HD voiceovers
+├── video_gen.py     # Compiles text, voice, and stock clips into HD video
+├── uploader.py      # Authenticates and uploads to YouTube via YouTube Data API
+└── requirements.txt # Python dependencies
